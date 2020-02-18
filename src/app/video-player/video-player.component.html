@@ -1,0 +1,23 @@
+<div class="content" *ngIf="staticId">
+        <app-header></app-header>
+    <div class='video'>
+        <video width="300" height="200" controls autoplay>
+            <source src="{{videoSrc}}" type="video/mp4">
+          Your browser does not support the video tag.
+          </video>
+    </div>
+
+    <div class="transcript">
+        <div *ngFor="let script of transcriptData; let i = index;" >
+            <span class="legend" [ngClass]="{'cust': script.speaker == 'Cust'}" *ngIf="script.speaker != legendFunc(i+1)"></span>
+            <div class="snippet" [ngClass]="{'with-legend': script.speaker != legendFunc(i+1)}">
+                <span *ngIf="script.speaker != transcriptFunc(i-1)">{{script.speaker}}:</span>
+                <p>{{script.snippet}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!staticId">
+   No ID Found!
+</div>

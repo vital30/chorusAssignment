@@ -1,5 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { DatabaseService } from './_services/database/database.service';
+import {NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +10,14 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        DatabaseService
+      ],
+      schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
+
     }).compileComponents();
   }));
 
@@ -22,10 +33,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('chorusAssignment');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('chorusAssignment app is running!');
-  });
 });
